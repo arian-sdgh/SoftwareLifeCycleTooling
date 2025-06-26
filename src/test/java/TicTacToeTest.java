@@ -1,38 +1,46 @@
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.Test;
 
 public class TicTacToeTest {
 
+    private char[][] createBoard(char[][] boardConfig) {
+        return boardConfig;
+    }
+
     @Test
     public void testPlayerXWinsRow() {
-        char[][] board = {
+        char[][] board = createBoard(new char[][]{
                 {'X', 'X', 'X'},
                 {' ', 'O', ' '},
                 {'O', ' ', ' '}
-        };
-        assertTrue(TicTacToe.checkWin(board, 'X'));
+        });
+        assertTrue(TicTacToe.checkWin(board, 'X'), "Player X should win the row");
     }
 
     @Test
     public void testPlayerOWinsDiagonal() {
-        char[][] board = {
+        char[][] board = createBoard(new char[][]{
                 {'O', 'X', ' '},
                 {' ', 'O', 'X'},
                 {' ', ' ', 'O'}
-        };
-        assertTrue(TicTacToe.checkWin(board, 'O'));
+        });
+        assertTrue(TicTacToe.checkWin(board, 'O'), "Player O should win the diagonal");
     }
 
     @Test
     public void testNoWinner() {
-        char[][] board = {
+        char[][] board = createBoard(new char[][]{
                 {'X', 'O', 'X'},
                 {'O', 'X', 'O'},
                 {'O', 'X', 'O'}
-        };
-        assertFalse(TicTacToe.checkWin(board, 'X'));
-        assertFalse(TicTacToe.checkWin(board, 'O'));
+        });
+
+        assertAll("Check no winner",
+                () -> assertFalse(TicTacToe.checkWin(board, 'X'), "Player X should not win"),
+                () -> assertFalse(TicTacToe.checkWin(board, 'O'), "Player O should not win")
+        );
     }
 }
