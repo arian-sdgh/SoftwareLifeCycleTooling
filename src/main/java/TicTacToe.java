@@ -62,15 +62,40 @@ public class TicTacToe {
     }
 
     public static boolean checkWin(char[][] board, char currentPlayer) {
-        return (board[0][0] == currentPlayer && board[0][1] == currentPlayer && board[0][2] == currentPlayer)
-                || (board[1][0] == currentPlayer && board[1][1] == currentPlayer && board[1][2] == currentPlayer)
-                || (board[2][0] == currentPlayer && board[2][1] == currentPlayer && board[2][2] == currentPlayer)
-                || (board[0][0] == currentPlayer && board[1][0] == currentPlayer && board[2][0] == currentPlayer)
-                || (board[0][1] == currentPlayer && board[1][1] == currentPlayer && board[2][1] == currentPlayer)
-                || (board[0][2] == currentPlayer && board[1][2] == currentPlayer && board[2][2] == currentPlayer)
-                || (board[0][0] == currentPlayer && board[1][1] == currentPlayer && board[2][2] == currentPlayer)
-                || (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer);
+    return checkRows(board, currentPlayer) ||
+           checkColumns(board, currentPlayer) ||
+           checkDiagonals(board, currentPlayer);
+}
+
+private static boolean checkRows(char[][] board, char currentPlayer) {
+    for (int i = 0; i < 3; i++) {
+        if (board[i][0] == currentPlayer && board[i][1] == currentPlayer && board[i][2] == currentPlayer) {
+            return true;
+        }
     }
+    return false;
+}
+
+private static boolean checkColumns(char[][] board, char currentPlayer) {
+    for (int i = 0; i < 3; i++) {
+        if (board[0][i] == currentPlayer && board[1][i] == currentPlayer && board[2][i] == currentPlayer) {
+            return true;
+        }
+    }
+    return false;
+}
+
+private static boolean checkDiagonals(char[][] board, char currentPlayer) {
+    // Hauptdiagonale
+    if (board[0][0] == currentPlayer && board[1][1] == currentPlayer && board[2][2] == currentPlayer) {
+        return true;
+    }
+    // Antidiagonale
+    if (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer) {
+        return true;
+    }
+    return false;
+}
 
     public static boolean isBoardFull(char[][] board) {
         for (int i = 0; i < 3; i++) {
