@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class TicTacToeTest {
 
+    // Hilfsmethode, um ein Test-Board zu erstellen
     private char[][] createBoard(char[][] boardConfig) {
         return boardConfig;
     }
@@ -38,6 +39,7 @@ public class TicTacToeTest {
                 {'O', 'X', 'O'}
         });
 
+        // Nutze assertAll, um alle Assertions in einer Methode zu gruppieren
         assertAll("Check no winner",
                 () -> assertFalse(TicTacToe.checkWin(board, 'X'), "Player X should not win"),
                 () -> assertFalse(TicTacToe.checkWin(board, 'O'), "Player O should not win")
