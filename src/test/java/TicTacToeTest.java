@@ -39,6 +39,13 @@ public class TicTacToeTest {
                 {'O', 'X', 'O'}
         });
 
+    public void testSwitchPlayer_XtoO() {
+        assertEquals('O', TicTacToe.switchPlayer('X'));
+    }
+    public void testSwitchPlayer_OtoX() {
+        assertEquals('X', TicTacToe.switchPlayer('O'));
+    }
+
         // Nutze assertAll, um alle Assertions in einer Methode zu gruppieren
         assertAll("Check no winner",
                 () -> assertFalse(TicTacToe.checkWin(board, 'X'), "Player X should not win"),
