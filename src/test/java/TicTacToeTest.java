@@ -30,6 +30,45 @@ public class TicTacToeTest {
         });
         assertTrue(TicTacToe.checkWin(board, 'O'), "Player O should win the diagonal");
     }
+   @Test
+    void testCheckColumns_withWinningColumn_returnsTrue() {
+        char[][] board = {
+            {'O', 'X', ' '},
+            {'O', 'X', ' '},
+            {'O', ' ', ' '}
+        };
+        assertTrue(TicTacToe.checkColumns(board, 'O'));
+    }
+
+    @Test
+    void testCheckColumns_withoutWinningColumn_returnsFalse() {
+        char[][] board = {
+            {'O', 'X', ' '},
+            {'X', 'O', ' '},
+            {'O', ' ', ' '}
+        };
+        assertFalse(TicTacToe.checkColumns(board, 'X'));
+    }
+
+    @Test
+    void testCheckDiagonals_withWinningMainDiagonal_returnsTrue() {
+        char[][] board = {
+            {'X', 'O', ' '},
+            {' ', 'X', 'O'},
+            {' ', ' ', 'X'}
+        };
+        assertTrue(TicTacToe.checkDiagonals(board, 'X'));
+    }
+
+    @Test
+    void testCheckDiagonals_withoutWinningDiagonal_returnsFalse() {
+        char[][] board = {
+            {'X', 'O', 'O'},
+            {' ', 'O', 'X'},
+            {'X', ' ', 'X'}
+        };
+        assertFalse(TicTacToe.checkDiagonals(board, 'X'));
+    }
 
     @Test
     public void testNoWinner() {
@@ -39,6 +78,8 @@ public class TicTacToeTest {
                 {'O', 'X', 'O'}
         });
 
+
+     
     public void testSwitchPlayer_XtoO() {
         assertEquals('O', TicTacToe.switchPlayer('X'));
     }
@@ -46,7 +87,7 @@ public class TicTacToeTest {
         assertEquals('X', TicTacToe.switchPlayer('O'));
     }
 
-        
+
         // Nutze assertAll, um alle Assertions in einer Methode zu gruppieren
         assertAll("Check no winner",
                 () -> assertFalse(TicTacToe.checkWin(board, 'X'), "Player X should not win"),
