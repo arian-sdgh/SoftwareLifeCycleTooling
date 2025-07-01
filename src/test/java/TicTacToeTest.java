@@ -30,16 +30,7 @@ public class TicTacToeTest {
         });
         assertTrue(TicTacToe.checkWin(board, 'O'), "Player O should win the diagonal");
     }
-
-    @Test
-    public void testNoWinner() {
-        char[][] board = createBoard(new char[][]{
-                {'X', 'O', 'X'},
-                {'O', 'X', 'O'},
-                {'O', 'X', 'O'}
-        });
-
-    @Test
+   @Test
     void testCheckColumns_withWinningColumn_returnsTrue() {
         char[][] board = {
             {'O', 'X', ' '},
@@ -78,8 +69,29 @@ public class TicTacToeTest {
         };
         assertFalse(TicTacToe.checkDiagonals(board, 'X'));
     }
-        
-        void testIsBoardFull_fullBoard_returnsTrue() {
+
+
+    @Test
+    public void testNoWinner() {
+        char[][] board = createBoard(new char[][]{
+                {'X', 'O', 'X'},
+                {'O', 'X', 'O'},
+                {'O', 'X', 'O'}
+        });
+
+
+     @Test     
+    public void testSwitchPlayer_XtoO() {
+        assertEquals('O', TicTacToe.switchPlayer('X'));
+    }
+     @Test
+    public void testSwitchPlayer_OtoX() {
+        assertEquals('X', TicTacToe.switchPlayer('O'));
+    }
+
+
+         @Test
+      public void testIsBoardFull_fullBoard_returnsTrue() {
         char[][] board = {
             {'X', 'O', 'X'},
             {'X', 'O', 'O'},
@@ -87,8 +99,8 @@ public class TicTacToeTest {
         };
         assertTrue(TicTacToe.isBoardFull(board));
     }
-
-    void testIsBoardFull_notFull_returnsFalse() {
+     @Test
+   public void testIsBoardFull_notFull_returnsFalse() {
         char[][] board = {
             {'X', 'O', ' '},
             {'X', 'O', 'O'},
@@ -96,7 +108,8 @@ public class TicTacToeTest {
         };
         assertFalse(TicTacToe.isBoardFull(board));
     }
-}
+
+      main
         // Nutze assertAll, um alle Assertions in einer Methode zu gruppieren
         assertAll("Check no winner",
                 () -> assertFalse(TicTacToe.checkWin(board, 'X'), "Player X should not win"),
