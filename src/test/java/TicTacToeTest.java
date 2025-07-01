@@ -78,6 +78,24 @@ public class TicTacToeTest {
         };
         assertFalse(TicTacToe.checkDiagonals(board, 'X'));
     }
+        
+        void testIsBoardFull_fullBoard_returnsTrue() {
+        char[][] board = {
+            {'X', 'O', 'X'},
+            {'X', 'O', 'O'},
+            {'O', 'X', 'X'}
+        };
+        assertTrue(TicTacToe.isBoardFull(board));
+    }
+
+    void testIsBoardFull_notFull_returnsFalse() {
+        char[][] board = {
+            {'X', 'O', ' '},
+            {'X', 'O', 'O'},
+            {'O', 'X', 'X'}
+        };
+        assertFalse(TicTacToe.isBoardFull(board));
+    }
 }
         // Nutze assertAll, um alle Assertions in einer Methode zu gruppieren
         assertAll("Check no winner",
